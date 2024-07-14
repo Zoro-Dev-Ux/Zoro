@@ -236,4 +236,44 @@ If you have major coding issues with this bot, please join and ask for help.
 - Don't claim my source code as your own
 - Do not monetize my source code (such as: buy and sell commands, buy and sell bots, call for donations, etc.)
 - Don't remove/edit my credits (author name) in my source code
+<br>
+<p>_Ilom: The Ultimate Facebook Bot_
 
+🤖💻🔥
+
+Build your own Facebook bot with Ilom! This powerful and flexible bot framework makes it easy to create and deploy your own chatbot on Facebook Messenger.
+
+**_Features:_**
+
+- _Easy setup_: Get started in minutes with our simple and intuitive setup process 📈
+- _Customizable_: Tailor your bot to your needs with our modular architecture 🔧
+- _Scalable_: Handle multiple conversations simultaneously with our efficient architecture 💸
+- _Extensible_: Add new features and integrations with our plugin system 🤝
+
+**_Why fork Ilom?_**
+
+- _Learn from a real-world project_: Ilom is a production-ready bot with a modular architecture, making it a great learning resource 📚
+- _Contribute to a growing community_: Join our community of developers and help shape the future of Ilom 👥
+- _Build your own bot_: Use Ilom as a starting point to create your own unique Facebook bot 🚀
+
+**_Fork and deploy Ilom in Render_**
+
+Click the "Fork" button above to create your own copy of Ilom. Then, deploy your bot to Render and start building your own Facebook bot in minutes! 🚀
+
+**_Render_**
+
+- _Easy deployment_: Get your bot up and running in minutes with Render's simple deployment process 📈
+- _Scalable infrastructure_: Handle multiple conversations simultaneously with Render's scalable infrastructure 💸
+- _Real-time analytics_: Monitor your bot's performance in real-time with Render's analytics dashboard 📊
+
+**_Getting started_**
+
+1. Fork this repository
+2. Install dependencies with `npm install`
+3. Configure your bot with `config.js`
+4. Start your bot with `npm start`
+
+_Join the conversation_
+
+👥💬
+<p>
