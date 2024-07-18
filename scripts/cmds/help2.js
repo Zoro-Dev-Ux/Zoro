@@ -34,7 +34,7 @@ module.exports = {
       const categories = {};
       let msg = "";
 
-      msg += `✰✰✰✰✰✰✰✰✰✰⤴\n   🌹 AMEBO KWARA 🌹 \n✰✰✰✰✰✰✰✰✰✰⤴`; // replace with your name 
+      msg += `✰✰✰✰✰✰✰✰✰✰⤴\n   🌹 Ilom 🌹 \n✰✰✰✰✰✰✰✰✰✰⤴`; // replace with your name 
 
       for (const [name, value] of commands) {
         if (value.config.role > 1 && role < value.config.role) continue;
@@ -95,7 +95,7 @@ module.exports = {
         const guideBody = configCommand.guide?.en || "No guide available.";
         const usage = guideBody.replace(/{p}/g, prefix).replace(/{n}/g, configCommand.name);
 
-        const response = `✰✰✰✰✰✰⤴🌹 AMEBO KWARA 🌹✰✰✰✰✰✰⤴
+        const response = `✰✰✰✰✰✰⤴🌹 Ilom 🌹✰✰✰✰✰✰⤴
   ➡🌹 ${configCommand.name}
   ➡🌹 𝙄𝙉𝙁𝙊
   ➡🌹 𝘿𝙚𝙨𝙘𝙧𝙞𝙥𝙩𝙞𝙤𝙣: ${longDescription}
