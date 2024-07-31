@@ -1,12 +1,12 @@
 const axios = require('axios');
 
-const prefixes = ['heisbroken','terry','Heis'];
+const prefixes = ['Ilom','Raphael',];
 
 module.exports = {
 
   config: {
 
-    name: "heisbroken",
+    name: "Ilom",
 
     aliases: [],
 
@@ -36,7 +36,7 @@ module.exports = {
 
    if (prefixes.some(prefix => event.body.toLowerCase().startsWith(prefix))) {
 
-  const boss = await usersData.getName(100090443419982); // you can change admin/owner make this ai in here
+  const boss = await usersData.getName(61553871285563); // you can change admin/owner make this ai in here
 
 
 
@@ -88,7 +88,7 @@ module.exports = {
 
 
 
-  const boss = await usersData.getName(100090443419982); // you can change admin/owner make this ai in here
+  const boss = await usersData.getName(61553871285563); // you can change admin/owner make this ai in here
 
 
 
