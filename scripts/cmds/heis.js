@@ -18,7 +18,7 @@ async function getAIResponse(input, userId, messageID) {
     { url: 'https://ai-chat-gpt-4-lite.onrender.com/api/hercai', params: { question: input } }
   ];
 
-  let response = "✰ Hi cutie 🥺 how are you doing, I'm Hêîs how can I help you 💙🎧🖤𝐢𝐬 🪶✰";
+  let response = "✰ Hi cutie 🥺 how are you doing, I'm stiles how can I help you 💙🎧🖤𝐢𝐬 🪶✰";
   let currentIndex = 0;
 
   for (let i = 0; i < services.length; i++) {
@@ -33,24 +33,24 @@ async function getAIResponse(input, userId, messageID) {
 
   return { response, messageID };
 }
-const prefixes = ['heis', 'Heiis'];
+const prefixes = ['Ilom', 'stiles','Raphael'];
 module.exports = {
   config: {
-    name: 'heis',
-    author: 'Arn',
+    name: 'Ilom',
+    author: 'Raphael',
     role: 0,
-    category: 'heis',
+    category: 'Ilom',
     shortDescription: 'ai to ask anything',
   },
   onStart: async function ({ api, event, args }) {
     const input = args.join(' ').trim();
     if (!input) {
-      api.sendMessage(`🌹 hêîs brõkêñ 💙 🎧 🖤 🌹\n✰✰✰✰✰✰✰✰\n   Hi cutie 🥺 how are you doing dear, I'm hêîs how can I help you 💙🎧🖤  🪶.\n✰✰✰✰✰✰✰✰`, event.threadID, event.messageID);
+      api.sendMessage(`😃 Raphael scholar 🧒🧑\n✰✰✰✰✰✰✰✰\n   Hi cutie 🥺 how are you doing dear, I'm stiles how can I help you 💙🎧🖤  🪶.\n✰✰✰✰✰✰✰✰`, event.threadID, event.messageID);
       return;
     }
 
     const { response, messageID } = await getAIResponse(input, event.senderID, event.messageID);
-    api.sendMessage(` 🌹 hêîs brõkêñ 💙 🎧 🖤 🌹 \n✰✰✰✰✰✰✰✰\n${response}\n✰✰✰✰✰✰✰✰`, event.threadID, (err, info) => {
+    api.sendMessage(` 😃 Raphael scholar 🧒🧑 \n✰✰✰✰✰✰✰✰\n${response}\n✰✰✰✰✰✰✰✰`, event.threadID, (err, info) => {
         global.GoatBot.onReply.set(info.messageID, {
             commandName: this.config.name,
             author: event.senderID,
@@ -84,7 +84,7 @@ module.exports = {
     if(event.type === 'message_reply'){
         if(isNaN(reply)){
     const { response, messageID } = await getAIResponse(reply, event.senderID, message.messageID);
-    api.sendMessage(` 🌹 hêîs brõkêñ 💙 🎧 🖤 🌹 \n✰✰✰✰✰✰✰✰\n${response}\n✰✰✰✰✰✰✰✰`, event.threadID, (err, info) => {
+    api.sendMessage(` 😃 Raphael scholar 🧒🧑 \n✰✰✰✰✰✰✰✰\n${response}\n✰✰✰✰✰✰✰✰`, event.threadID, (err, info) => {
         global.GoatBot.onReply.set(info.messageID, {
             commandName: this.config.name,
             author: event.senderID,
@@ -97,7 +97,7 @@ module.exports = {
 //---------------------//
 if(isNaN(reply)){
     const { response, messageID } = await getAIResponse(reply, event.senderID, message.messageID);
-    api.sendMessage(` 🌹 hêîs brõkêñ 💙 🎧 🖤 🌹 \n✰✰✰✰✰✰✰✰\n${response}\n✰✰✰✰✰✰✰✰`, event.threadID, messageID);
+    api.sendMessage(` 😃 Raphael scholar 🧒🧑 \n✰✰✰✰✰✰✰✰\n${response}\n✰✰✰✰✰✰✰✰`, event.threadID, messageID);
 }
     }
   }
