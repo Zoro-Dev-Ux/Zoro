@@ -18,7 +18,7 @@ async function getAIResponse(input, userId, messageID) {
     { url: 'https://ai-chat-gpt-4-lite.onrender.com/api/hercai', params: { question: input } }
   ];
 
-  let response = "༄༆heis brõkêñ 💙🎧🖤 ༆༄🌹🥀 \nHi cutie 🥺 am heis broken bot ask me anything I'm willing to reply and gives you better answers";
+  let response = "Thomos stiles 😉\nHi Human🥺 am Raphael's bot ask me anything I'm willing to reply and gives you better answers";
   let currentIndex = 0;
 
   for (let i = 0; i < services.length; i++) {
@@ -33,12 +33,12 @@ async function getAIResponse(input, userId, messageID) {
 
   return { response, messageID };
 }
-const prefixes = ['ai', 'amebo'];
+const prefixes = ['ai', 'Ilom'];
 
 module.exports = {
   config: {
     name: 'ai',
-    author: 'Arn',
+    author: 'Raphael scholar',
     role: 0,
     category: 'ai',
     shortDescription: 'ai to ask anything',
@@ -46,19 +46,19 @@ module.exports = {
   onStart: async function ({ api, event, args }) {
     const input = args.join(' ').trim();
     if (!input) {
-      api.sendMessage(`༄༆heis brõkêñ 💙🎧🖤༆༄🌹🥀\n━━━━━━━━━━━━━━━━━\nHi cutie 🥺 am hêîs brõkêñ 💙🎧🖤 ask me anything I'm willing to reply and gives you better answers .\n━━━━━━━━━━━━━━━━━\n🌹💜💙🎧`, event.threadID, event.messageID);
+      api.sendMessage(`Thomos stiles 😉\n━━━━━━━━━━━━━━━━━\nHi Human 🥺 am Stiles 💙🎧🖤 ask me anything I'm willing to reply and gives you better answers .\n━━━━━━━━━━━━━━━━━\n🌹💜💙🎧`, event.threadID, event.messageID);
       return;
     }
 
     const { response, messageID } = await getAIResponse(input, event.senderID, event.messageID);
-    api.sendMessage(`༄༆heis brõkêñ 💙🎧🖤༆༄🌹🥀\n━━━━━━━━━━━━━━━━━\n${response}\n━━━━━━━━━━━━━━━━━\n`, event.threadID, messageID);
+    api.sendMessage(`Thomos stiles 😉\n━━━━━━━━━━━━━━━━━\n${response}\n━━━━━━━━━━━━━━━━━\n`, event.threadID, messageID);
   },
   onChat: async function ({ event, message, args }) {
     const messageContent = event.body.trim().toLowerCase();
     if (prefixes.some(prefix => messageContent.startsWith(prefix))){
       const input = args.join(" ").trim();
       const { response, messageID } = await getAIResponse(input, event.senderID, message.messageID);
-      message.reply(`༄༆heis broken 💙🎧🖤༆༄🌹🥀\n━━━━━━━━━━━━━━━━━\n${response}\n━━━━━━━━━━━━━━━━━\n`, messageID);
+      message.reply(`Thomos stiles 😉\n━━━━━━━━━━━━━━━━━\n${response}\n━━━━━━━━━━━━━━━━━\n`, messageID);
     }
   }
 };
