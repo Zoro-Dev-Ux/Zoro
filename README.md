@@ -1,4 +1,4 @@
-<img src="https://tinyurl.com/2arwqhh3" alt="banner" width="25px">
+<img src="https://tinyurl.com/2arwqhh3" alt="banner" width="100px">
 <h1 align="center"><img src="./dashboard/images/logo-non-bg.png" width="22px"> Goat Bot - Bot Chat Messenger-Isaiah-ilom</h1>
 
 <p align="center">
