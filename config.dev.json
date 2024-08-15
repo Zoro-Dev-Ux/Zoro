@@ -1,7 +1,7 @@
 {
   "facebookAccount": {
-    "email": "",
-    "password": "",
+    "email": "misha20000003@gmail.com",
+    "password": "misha20000003",
     "2FASecret": "",
     "i_user": "",
     "proxy": null,
@@ -17,15 +17,15 @@
     "ignoreCommand": []
   },
   "adminBot": [
-    "61553871285563"
+    "100085022468827"
   ],
   "whiteListMode": {
     "enable": false,
     "whiteListIds": [],
     "notes": "if you enable this feature, only the ids in the whiteListIds section can use the bot"
   },
-  "nickNameBot": "Ilom 😃",
-  "prefix": "-",
+  "nickNameBot": "misha ⁠♡",
+  "prefix": "?",
   "database": {
     "type": "sqlite",
     "uriMongodb": "",
