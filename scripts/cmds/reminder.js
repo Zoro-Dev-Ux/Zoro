@@ -5,7 +5,7 @@ module.exports.config = {
   version: 1.0,
   credits: "Raphael ilom",
   cooldowns: 2,
-  usePrefix: false,
+  usePrefix: true,
   description: "Set a reminder for a specified time.",
   commandCategory: "Utility",
   usages: "[time in minutes] [message]"

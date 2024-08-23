@@ -5,7 +5,7 @@ module.exports.config = {
   version: 1.0,
   credits: "Raphael ilom",
   cooldowns: 2,
-  usePrefix: false,
+  usePrefix: true,
   description: "Create a simple poll.",
   commandCategory: "Utility",
   usages: "[question] | [option1] | [option2] | ..."

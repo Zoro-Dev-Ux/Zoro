@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const TINYURL_API_KEY = 'CJ6S79EFBLLF1lYl42XzpZjliuU7aloHsM2JIoJVABYHpujQkBMvvxpld7YY';
+const TINYURL_API_KEY = 'goZ66KEqK7xxt7gGJaTcFo0K89McxwZ7c4bucA2ZYuZLT25I9zgErEpLy8qj';
 
 async function shortenURL(url) {
   try {
@@ -22,8 +22,8 @@ async function shortenURL(url) {
 
 module.exports = {
   config: {
-    name: "getlink",
-    version: "1.1",
+    name: "link",
+    version: "1.2",
     author: "Raphael ilom",
     countDown: 5,
     role: 0,
@@ -50,7 +50,7 @@ module.exports = {
     try {
       const shortURL = await shortenURL(url);
       if (shortURL) {
-        api.sendMessage(`Shortened URL: ${shortURL}`, event.threadID, event.messageID);
+        api.sendMessage(`Here's your requested URL: ${shortURL}`, event.threadID, event.messageID);
       } else {
         api.sendMessage("Failed to shorten the URL.", event.threadID, event.messageID);
       }
