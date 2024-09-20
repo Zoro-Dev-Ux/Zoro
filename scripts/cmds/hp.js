@@ -3,7 +3,7 @@ const axios = require("axios");
 const path = require("path");
 const { getPrefix } = global.utils;
 const { commands, aliases } = global.GoatBot;
-const doNotDelete = "𝙈𝘼𝙏𝙀𝙊 𝘾𝙃𝘼𝙏𝘽𝙊𝙏";
+const doNotDelete = "hêîṣ ɓr̃õƙêñ 💔";
 
 function formatFont(text) {
   const fontMapping = {
@@ -39,7 +39,7 @@ module.exports = {
 
     if (args.length === 0) {
       const categories = {};
-      let msg = `❀━━━━━━━━━━━━━━❀\n    🇳🇬 【 𝗠𝗔𝗧𝗘𝗢 𝗖𝗛𝗔𝗧𝗕𝗢𝗧 】🇳🇬 \n❀━━━━━━━━━━━━━━❀\n`;
+      let msg = `❀━━━━━━━━━━━━━━❀\n    🇳🇬 【 hêîṣ ɓr̃õƙêñ 💔】🇳🇬 \n❀━━━━━━━━━━━━━━❀\n`;
 
       for (const [name, value] of commands) {
         if (value.config.role > role) continue;
