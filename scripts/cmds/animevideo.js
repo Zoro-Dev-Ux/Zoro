@@ -3,7 +3,7 @@ module.exports = {
     name: "animevideo",
     aliases: ["anivid", "animeedit", "animevdo"],
     version: "1.0",
-    author: "kshitiz",
+    author: "Raphael scholar",
     countDown: 20,
     role: 0,
     shortDescription: "get anime video",
