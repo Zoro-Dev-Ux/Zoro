@@ -1,76 +1,94 @@
-const axios = require('axios');
+const axios = require("axios");
 
 module.exports = {
   config: {
     name: "prodia",
-
     version: "1.1",
-    author: "ArYAN",
-    countDown: 10,
+    author: "Raphael scholar",
     role: 0,
     shortDescription: {
       en: 'Text to Image'
     },
-    longDescription: {
-      en: "Text to image"
-    },
     category: "image",
     guide: {
-      en: '{pn} your prompt'
+      en: `{pn} your prompt | type models here are \n
+1 | 3Guofeng3_v34
+2 | absolutereality_V16
+3 | absolutereality_v181
+4 | analog-diffusion-1.0.ckpt
+5 | anythingv3_0-pruned.ckpt
+6 | anything-v4.5-pruned.ckpt
+7 | anythingV5_PrtRE
+8 | AOM3A3_orangemixs
+9 | blazing_drive_v10g
+10 | cetusMix_Version35
+11 | childrensStories_v13D
+12 | childrensStories_v1SemiReal
+13 | childrensStories_v1ToonAnime
+14 | Counterfeit_v30
+15 | cuteyukimixAdorable_midchapter3
+16 | cyberrealistic_v33
+17 | dalcefo_v4
+18 | deliberate_v2
+19 | deliberate_v3
+20 | dreamlike-anime-1.0
+21 | dreamlike-diffusion-1.0
+22 | dreamlike-photoreal-2.0
+23 | dreamshaper_6BakedVae
+24 | dreamshaper_7
+25 | dreamshaper_8
+26 | edgeOfRealism_eorV20
+27 | EimisAnimeDiffusion_V1
+28 | elldreths-vivid-mix
+29 | epicrealism_naturalSinRC1VAE
+30 | ICantBelieveItsNotPhotography_seco
+31 | juggernaut_aftermath
+32 | lofi_v4
+33 | lyriel_v16
+34 | majicmixRealistic_v4
+35 | mechamix_v10
+36 | meinamix_meinaV9
+37 | meinamix_meinaV11
+38 | neverendingDream_v122
+39 | openjourney_V4
+40 | pastelMixStylizedAnime_pruned_fp16
+41 | portraitplus_V1.0
+42 | protogenx34
+43 | Realistic_Vision_V1.4-pruned-fp16
+44 | Realistic_Vision_V2.0
+45 | Realistic_Vision_V4.0
+46 | Realistic_Vision_V5.0
+47 | redshift_diffusion-V10
+48 | revAnimated_v122
+49 | rundiffusionFX25D_v10
+50 | rundiffusionFX_v10
+51 | sdv1_4.ckpt
+52 | v1-5-pruned-emaonly
+53 | shoninsBeautiful_v10
+54 | theallys-mix-ii-churned
+55 | timeless-1.0.ckpt`
     }
   },
+  onStart: async function ({ message, api, args, event }) {
+    const text = args.join(' ');
 
-  onStart: async function ({ api, event, args, message, usersData }) {
-    const text = args.join(" ");
     if (!text) {
-      return message.reply("❓| Please provide a prompt.");
+      return message.reply("Please provide a prompt with models");
     }
 
-    let prompt = text;
+    const [prompt, model] = text.split('|').map((text) => text.trim());
+    const models = model || "2";
+    const puti = 'xyz'
+      let baseURL = `https://smfahim.${puti}/prodia?prompt=${prompt}&model=${models}`;
 
-    message.reply("✅| Creating your Imagination...", async (err, info) => {
-      let ui = info.messageID;
-      api.setMessageReaction("⏳", event.messageID, () => {}, true);
-      try {
-        const response = await axios.get(`https://global-sprak.onrender.com/api/prodia?prompt=${encodeURIComponent(prompt)}&amount=4`);
-        api.setMessageReaction("✅", event.messageID, () => {}, true);
-        const images = response.data.result;
-        message.unsend(ui);
-        message.reply({
-          body: `🖼 𝗣𝗥𝗢𝗗𝗜𝗔 \n━━━━━━━━━━━━\n\nPlease reply with the image number (1, 2, 3, 4) to get the corresponding image in high resolution.`,
-          attachment: await Promise.all(images.map(img => global.utils.getStreamFromURL(img)))
-        }, async (err, info) => {
-          if (err) return console.error(err);
-          global.GoatBot.onReply.set(info.messageID, {
-            commandName: this.config.name,
-            messageID: info.messageID,
-            author: event.senderID,
-            imageUrls: images
-          });
-        });
-      } catch (error) {
-        console.error(error);
-        api.sendMessage(`Error: ${error}`, event.threadID);
-      }
+    api.setMessageReaction("⏳", event.messageID, () => {}, true);
+
+    const attachment = await global.utils.getStreamFromURL(baseURL);
+
+    message.reply({
+      attachment
     });
-  },
 
-  onReply: async function ({ api, event, Reply, usersData, args, message }) {
-    const reply = parseInt(args[0]);
-    const { author, imageUrls } = Reply;
-    if (event.senderID !== author) return;
-    try {
-      if (reply >= 1 && reply <= 4) {
-        const img = imageUrls[reply - 1];
-        message.reply({ attachment: await global.utils.getStreamFromURL(img) });
-      } else {
-        message.reply("Invalid image number. Please reply with a number between 1 and 4.");
-        return;
-      }
-    } catch (error) {
-      console.error(error);
-      api.sendMessage(`Error: ${error}`, event.threadID);
-    }
-    message.unsend(Reply.messageID); 
-  },
+    api.setMessageReaction("✅", event.messageID, () => {}, true);
+  }
 };

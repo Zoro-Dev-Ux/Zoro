@@ -1,28 +1,53 @@
 const axios = require('axios');
 const rateLimit = new Map();
+const description = "You are Stacy, an AI assistant created by Anthropic to be helpful, harmless, and honest.";
 
 module.exports.config = {
   name: "stacy",
-  aliases: ["stacy", "shino", "chat"],
-  haspermssion: 0,
-  version: 1.1,
-  credits: "Raphael ilom",
+  aliases: ["stacy", "st", "chat"],
+  hasPermission: 0,
+  version: 1.3,
+  credits: "lance x Raphael ilom, enhanced by [Raphael Scholar]",
   cooldowns: 2,
-  usePrefix: true,
-  description: "stacy (query)",
+  usePrefix: false,
+  description: "Chat with Stacy, an AI assistant",
   commandCategory: "AI",
   usages: "[question]"
 };
 
-module.exports.handleReply = async function ({ api, event }) {
-  const { messageID, threadID } = event;
-  const id = event.senderID;
-  const inp = event.body;
-  const link = `https://character-ai-by-lance.onrender.com/api/chat?message=${encodeURIComponent(inp)}&chat_id=${id}`;
+const ANTHROPIC_API_KEY = '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';
+const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/conversations';
+
+async function getAnthropicResponse(message, chatHistory) {
+  try {
+    const response = await axios.post(ANTHROPIC_API_URL, {
+      prompt: `Human: ${message}\n\nAssistant: `,
+      model: "claude-2",
+      max_tokens_to_sample: 300,
+      stop_sequences: ["\n\nHuman:"],
+      temperature: 0.8,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': ANTHROPIC_API_KEY,
+      }
+    });
+
+    return response.data.completion.trim();
+  } catch (error) {
+    console.error('Error calling Anthropic API:', error);
+    throw error;
+  }
+}
+
+module.exports.handleReply = async function ({ api, event, handleReply }) {
+  const { messageID, threadID, senderID, body } = event;
+  
+  if (handleReply.author !== senderID) return;
 
   try {
-    const response = await axios.get(link);
-    api.sendMessage(response.data.text, threadID, messageID);
+    const response = await getAnthropicResponse(body, []);
+    api.sendMessage(response, threadID, messageID);
   } catch (error) {
     console.error(`Error: ${error.message}`);
     api.sendMessage("An error occurred while processing your request.", threadID, messageID);
@@ -30,45 +55,37 @@ module.exports.handleReply = async function ({ api, event }) {
 };
 
 module.exports.run = async function ({ api, args, event }) {
-  const { threadID, messageID } = event;
+  const { threadID, messageID, senderID } = event;
   const inp = args.join(' ');
-  const id = event.senderID;
-  const link = `https://character-ai-by-lance.onrender.com/api/chat?message=${encodeURIComponent(inp)}&chat_id=${id}`;
 
   // Rate limiting
-  if (rateLimit.has(id) && (Date.now() - rateLimit.get(id)) < 2000) {
+  if (rateLimit.has(senderID) && (Date.now() - rateLimit.get(senderID)) < 2000) {
     return api.sendMessage("Please wait a moment before sending another request.", threadID, messageID);
   }
-  rateLimit.set(id, Date.now());
+  rateLimit.set(senderID, Date.now());
 
   if (!inp) {
     return api.sendMessage("Please provide a query.", threadID, messageID);
   }
 
-  if (inp.toLowerCase() === 'clear') {
-    try {
-      const response = await axios.get(`https://character-ai-by-lance.onrender.com/api/history?cmd=yes&chat_id=${id}`);
-      const message = response.data.message ? 'Successfully deleted chat history.' : 'Chat history not deleted.';
-      api.sendMessage(message, threadID, messageID);
-    } catch (error) {
-      console.error(`Error: ${error.message}`);
-      api.sendMessage("An error occurred while clearing chat history.", threadID, messageID);
-    }
-  } else if (inp.toLowerCase() === 'help') {
+  if (inp.toLowerCase() === 'help') {
     const helpMessage = `
-      **Stacy Command Help**
+      ** Command Help**
       - **stacy [question]**: Ask Stacy a question.
-      - **stacy clear**: Clear chat history.
       - **stacy help**: Show this help message.
     `;
     api.sendMessage(helpMessage, threadID, messageID);
   } else {
     try {
-      const response = await axios.get(link);
-      api.sendMessage(response.data.text, threadID, messageID);
-      global.client.handleReply.push({
-        name: this.config.name,
-        author: event.senderID
+      const response = await getAnthropicResponse(inp, []);
+      api.sendMessage(response, threadID, (error, info) => {
+        if (!error) {
+          global.client.handleReply.push({
+            name: this.config.name,
+            messageID: info.messageID,
+            author: senderID
+          });
+        }
       });
     } catch (error) {
       console.error(`Error: ${error.message}`);
